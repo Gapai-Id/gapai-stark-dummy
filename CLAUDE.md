@@ -9,7 +9,7 @@ Follow every rule in this file strictly. Never deviate unless the engineer expli
 
 | Layer | Technology | Version |
 |---|---|---|
-| Framework | Next.js App Router | 15.x |
+| Framework | Next.js App Router | 16.x |
 | Language | TypeScript strict mode | 5.x |
 | Styling | Tailwind CSS | v4 |
 | UI Components | shadcn/ui | latest |
@@ -31,7 +31,8 @@ src/
 │   │   ├── login/
 │   │   │   └── page.tsx
 │   │   └── layout.tsx            # Centered card layout
-│   ├── (da layout.tsx            # Sidebar + topbar shell
+│   ├── (dashboard)/              # Dashboard route group
+│   │   ├── layout.tsx            # Sidebar + topbar shell
 │   │   └── [feature]/
 │   │       └── page.tsx
 │   ├── design-system/            # Internal component reference (dev only)
@@ -53,7 +54,11 @@ src/
 ├── features/                     # Self-contained feature modules
 │   └── [feature-name]/
 │       ├── components/           # Feature-specific components
-│       ├─�─ hooks/                        # Shared custom hooks
+│       ├── hooks/                # Feature-specific hooks
+│       ├── types.ts              # Types specific to this feature
+│       └── index.ts              # Only export what other features need
+│
+├── hooks/                        # Shared custom hooks
 │   ├── use-debounce.ts
 │   ├── use-local-storage.ts
 │   └── use-media-query.ts
@@ -76,7 +81,16 @@ src/
 │
 └── mocks/                        # MSW mock handlers
     ├── browser.ts                # MSW browser setup
-    ├── server.ts                 # MSW server setup- Component files: `kebab-case.tsx` — e.g. `candidate-card.tsx`
+    ├── server.ts                 # MSW Node/test setup
+    └── handlers/
+        └── index.ts              # Aggregate all resource handlers
+```
+
+---
+
+## 🧩 Component Rules
+
+- Component files: `kebab-case.tsx` — e.g. `candidate-card.tsx`
 - One component per file, named export preferred
 - Co-locate component-specific types at the top of the same file
 
@@ -107,7 +121,7 @@ Every component that receives data must handle:
 
 ### Never
 - Use inline `style={{}}` — Tailwind only
-- Hardcode color hex valuealues — use design tokens
+- Hardcode color hex values — use design tokens
 - Use `default export` for components — use named exports
 - Fetch data inside a component directly — delegate to a hook
 - Use `any` type — use `unknown` and narrow, or generate proper types
@@ -174,7 +188,8 @@ export const candidateKeys = {
   list: (params: CandidateListParams) =>
     [...candidateKeys.all, 'list', params] as const,
   detail: (id: string) =>
-    [...candi}
+    [...candidateKeys.all, 'detail', id] as const,
+}
 ```
 
 ### Query hook template
@@ -247,7 +262,7 @@ export async function getCandidates(
   return data
 }
 
-export async function getidateById(id: string): Promise<Candidate> {
+export async function getCandidateById(id: string): Promise<Candidate> {
   const { data } = await api.get(`/candidates/${id}`)
   return data
 }
@@ -294,7 +309,7 @@ export interface PaginatedResponse<T> {
 export interface ApiError {
   message: string
   code: string
-  errors?: Record<string, str]>
+  errors?: Record<string, string[]>
 }
 
 // Standard list query params — extend per resource
@@ -334,7 +349,7 @@ const mockCandidates: Candidate[] = [
   // minimum 5 realistic entries
 ]
 
-export const candidateH[
+export const candidateHandlers = [
   http.get('/api/candidates', async ({ request }) => {
     await delay(400)
     const url = new URL(request.url)
@@ -394,7 +409,7 @@ export const candidateH[
 | Service function names | camelCase verb+noun | `getCandidates`, `createJob` |
 | Types / Interfaces | PascalCase | `CandidateProps`, `ApiError` |
 | Zustand stores | camelCase `use` prefix | `useAuthStore` |
-| Constants | SCREAMING_SNAKE_CASE | `MAX_FILE_SIZ |
+| Constants | SCREAMING_SNAKE_CASE | `MAX_FILE_SIZE` |
 | Env variables | NEXT_PUBLIC_ prefix for client-side | `NEXT_PUBLIC_API_URL` |
 | Route folders | kebab-case | `job-listings/`, `candidate-detail/` |
 
@@ -427,7 +442,7 @@ Shared logic belongs in `hooks/`, `services/`, or `components/common/`.
 ## 🚨 Error Handling Rules
 
 - All mutations: must have `onError` with `toast.error()`
-- All query errors: shown via `<ErrorState>` component, never raw err custom error strings
+- All query errors: shown via `<ErrorState>` component, never raw error strings
 - API 401: auth interceptor redirects to `/login` and clears the auth store
 - API 403: show `<ErrorState type="forbidden">` component
 - API 500: show `<ErrorState type="server">` with a retry button
@@ -449,7 +464,7 @@ Shared logic belongs in `hooks/`, `services/`, or `components/common/`.
 
 - ❌ `useEffect` for data fetching — use TanStack Query always
 - ❌ `any` type — use `unknown` or generate proper types from the API contract
-- ❌ Raw `fetch()` or `axios` in components — use tia hooks
+- ❌ Raw `fetch()` or `axios` in components — use via hooks
 - ❌ Editing files in `src/components/ui/` — extend in `src/components/common/`
 - ❌ Hardcoded color values, spacing, or font sizes — use design tokens
 - ❌ `console.log` in committed code — remove before PR
@@ -471,7 +486,7 @@ A component or feature is complete only when all of these pass:
 - [ ] MSW handler added for every new API endpoint consumed
 - [ ] No hardcoded values — all pulled from design tokens or constants
 - [ ] Props interface defined and exported
-- [ ] aming conventions in this file
+- [ ] Follow naming conventions in this file
 - [ ] No `console.log` left in code
 
 ---
@@ -487,6 +502,53 @@ NEXT_PUBLIC_API_URL=https://api.gapai.id/v1
 # Set to true to intercept requests with MSW mocks instead of real API
 NEXT_PUBLIC_ENABLE_MOCK=true
 ```
+
+---
+
+## 🌿 Git Workflow
+
+> Full reference: `GITFLOW.md`
+
+### Branch naming
+```
+feature/[ticket-id]-short-description   # e.g. feature/GAP-42-candidate-list-page
+fix/[ticket-id]-short-description       # e.g. fix/GAP-87-pagination-reset-on-filter
+chore/short-description                 # e.g. chore/upgrade-tanstack-query-v5
+hotfix/short-description                # branches from main, not develop
+```
+- Ticket ID required for `feature/` and `fix/`
+- kebab-case, max 50 characters
+- Never commit directly to `main`, `staging`, or `develop`
+
+### Commit format (Conventional Commits)
+```
+type(scope): short description
+```
+
+| Type | Use for |
+|---|---|
+| `feat` | New feature or visible UI change |
+| `fix` | Bug fix |
+| `style` | Tailwind/CSS only, no logic change |
+| `refactor` | Restructure, no behavior change |
+| `chore` | Deps, config, tooling |
+| `test` | Adding or fixing tests |
+| `docs` | README, CLAUDE.md, comments |
+
+Rules: imperative mood · max 72 chars · no trailing period · reference ticket in body (`Closes GAP-42`)
+
+### PR rules
+- Title follows commit format: `feat(scope): description`
+- Target: `feature/`, `fix/`, `chore/` → `develop`; `hotfix/` → `main` AND `develop`
+- Max 800 lines changed — split larger PRs
+- One feature or fix per PR — never mix unrelated changes
+
+### What AI must never do with git
+- ❌ Commit directly to `main`, `staging`, or `develop`
+- ❌ Generate a commit message without `type(scope):` prefix
+- ❌ Suggest `git push --force` on shared branches
+- ❌ Mix a feature with unrelated fixes or chores in one PR
+- ❌ Create a branch that doesn't follow the naming convention
 
 ---
 

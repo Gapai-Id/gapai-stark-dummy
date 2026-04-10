@@ -6,30 +6,15 @@ import type { ApiError } from '@/types/api'
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
+  // withCredentials sends the HttpOnly cookie on every request, including
+  // cross-origin requests to the API. Required for cross-subdomain auth.
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
   timeout: 15_000,
 })
-
-// ----------------------------------------------------------
-// Request interceptor — attach Bearer token
-// useAuthStore.getState() is safe outside React (Zustand store API)
-// ----------------------------------------------------------
-
-api.interceptors.request.use(
-  (config) => {
-    if (typeof window !== 'undefined') {
-      const token = useAuthStore.getState().token
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`
-      }
-    }
-    return config
-  },
-  (error: unknown) => Promise.reject(error),
-)
 
 // ----------------------------------------------------------
 // Response interceptor — normalise errors to ApiError shape
@@ -41,7 +26,9 @@ api.interceptors.response.use(
     const status = error.response?.status
     const data = error.response?.data
 
-    // 401 — clear auth store and redirect to login
+    // 401 — clear the cached user and redirect to login.
+    // The HttpOnly cookie is cleared by the backend on logout;
+    // here we only clear the client-side user cache.
     if (status === 401 && typeof window !== 'undefined') {
       useAuthStore.getState().clearAuth()
       window.location.href = '/login'

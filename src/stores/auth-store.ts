@@ -10,29 +10,32 @@ export interface AuthUser {
 }
 
 interface AuthState {
-  token: string | null
+  // Token is never stored on the client — the browser holds it in an
+  // HttpOnly cookie scoped to .gapai.id. We only cache user display data.
   user: AuthUser | null
   isAuthenticated: boolean
-  setAuth: (token: string, user: AuthUser) => void
+  setAuth: (user: AuthUser) => void
   clearAuth: () => void
 }
 
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      token: null,
       user: null,
       isAuthenticated: false,
-      setAuth: (token, user) => set({ token, user, isAuthenticated: true }),
-      clearAuth: () => set({ token: null, user: null, isAuthenticated: false }),
+      setAuth: (user) => set({ user, isAuthenticated: true }),
+      clearAuth: () => set({ user: null, isAuthenticated: false }),
     }),
     {
       name: 'gapai-auth',
-      // Only persist token + user, not derived isAuthenticated
-      partialize: (state) => ({ token: state.token, user: state.user }),
+      // Only persist user display data — auth state is derived from the cookie,
+      // which the browser manages automatically across all *.gapai.id subdomains.
+      partialize: (state) => ({ user: state.user }),
       onRehydrateStorage: () => (state) => {
         if (state) {
-          state.isAuthenticated = !!state.token
+          // isAuthenticated is re-derived from user presence on rehydration.
+          // The middleware is the real gate — this is only for client-side UI state.
+          state.isAuthenticated = !!state.user
         }
       },
     },

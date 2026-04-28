@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, Poppins } from 'next/font/google'
+import { Plus_Jakarta_Sans, Poppins, Roboto } from 'next/font/google'
 import { Providers } from './providers'
 import './globals.css'
 
@@ -15,6 +15,14 @@ const poppins = Poppins({
   variable: '--font-poppins',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
+})
+
+// Body copy font — Roboto
+const roboto = Roboto({
+  variable: '--font-roboto',
+  subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
 })
 
@@ -34,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakartaSans.variable} ${poppins.variable} h-full antialiased`}
+      className={`${jakartaSans.variable} ${poppins.variable} ${roboto.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

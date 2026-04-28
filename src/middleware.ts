@@ -1,27 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const PUBLIC_PATHS = ['/login', '/register', '/forgot-password']
-
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-  const token = request.cookies.get('token')?.value
-
-  const isPublicPath = PUBLIC_PATHS.some((p) => pathname.startsWith(p))
-
-  // Unauthenticated user hitting a protected route → redirect to login
-  if (!token && !isPublicPath) {
-    const loginUrl = new URL('/login', request.url)
-    // Preserve the intended destination so we can redirect back after login
-    loginUrl.searchParams.set('next', pathname)
-    return NextResponse.redirect(loginUrl)
-  }
-
-  // Authenticated user hitting a public route (e.g. /login) → redirect to dashboard
-  if (token && isPublicPath) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
-
+// Prototype mode — no auth guard, all routes public
+export function middleware(_request: NextRequest) {
   return NextResponse.next()
 }
 

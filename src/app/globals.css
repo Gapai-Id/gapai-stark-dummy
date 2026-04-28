@@ -294,3 +294,34 @@
     line-height: 1.25;
   }
 }
+
+/* ============================================================
+   STARK v2 Prototype Utilities
+   ============================================================ */
+
+/* Font utilities */
+@utility font-poppins {
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility font-roboto {
+  font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Extra small text */
+@utility text-2xs {
+  font-size: 0.625rem;
+  line-height: 1rem;
+}
+
+@theme {
+  /* Warning scale */
+  --color-warning-50:  #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+}

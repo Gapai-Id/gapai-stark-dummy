@@ -1,0 +1,156 @@
+'use client'
+
+import React, { useState } from 'react';
+import { StatusBar } from '@/components/design-system/StatusBar';
+import { ContextRow } from '@/components/design-system/ContextRow';
+import { Card } from '@/components/design-system/Card';
+import { StatusPill } from '@/components/design-system/StatusPill';
+import { Button } from '@/components/design-system/Button';
+import { BottomNav } from '@/components/design-system/BottomNav';
+import { FileText, ChevronRight, Info } from 'lucide-react';
+
+const jakerOptions = [
+  {
+    id: 'japan-caregiver',
+    destination: 'Jepang',
+    destinationEmoji: '🇯🇵',
+    title: 'Caregiver Jepang',
+    employer: 'PT Sakura Care Japan',
+    tagline: 'Rawat lansia dengan sistem kerja terstruktur'
+  },
+  {
+    id: 'korea-factory',
+    destination: 'Korea Selatan',
+    destinationEmoji: '🇰🇷',
+    title: 'Factory Worker Korea',
+    employer: 'PT Seoul Manufacturing Indo',
+    tagline: 'Pekerja pabrik dengan benefit kompetitif'
+  },
+  {
+    id: 'japan-hospitality',
+    destination: 'Jepang',
+    destinationEmoji: '🇯🇵',
+    title: 'Hospitality Jepang',
+    employer: 'PT Tokyo Hotels Group',
+    tagline: 'Bekerja di hotel dan resort Jepang'
+  },
+  {
+    id: 'taiwan-manufacturing',
+    destination: 'Taiwan',
+    destinationEmoji: '🇹🇼',
+    title: 'Manufacturing Taiwan',
+    employer: 'PT Taipei Tech Industries',
+    tagline: 'Operator mesin di industri elektronik'
+  }
+];
+
+export default function DashboardPreAssessment() {
+  const [activeTab, setActiveTab] = useState('beranda');
+
+  return (
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+      <StatusBar name="Sari" />
+      <ContextRow message="Yuk mulai assessment untuk kenali jalur yang cocok untukmu!" />
+
+      <main className="px-5 py-4 space-y-4">
+        {/* Welcome */}
+        <div className="text-center py-2">
+          <div className="text-[48px] mb-2">🌍</div>
+          <h3 className="mb-2">Selamat datang di Gapai, Sari!</h3>
+          <p className="text-[14px] leading-[22px] text-[var(--text-secondary)]">
+            Ayo mulai perjalananmu bekerja di luar negeri. Langkah pertama: kenali jalur yang paling cocok untukmu.
+          </p>
+        </div>
+
+        {/* Assessment CTA Card */}
+        <Card variant="tinted" className="shadow-md">
+          <div className="flex items-start gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-[var(--brand-green-500)] flex items-center justify-center flex-shrink-0">
+              <FileText size={24} className="text-white" />
+            </div>
+            <div className="flex-1">
+              <h4 className="mb-1">Mulai Pre-Assessment</h4>
+              <p className="text-[13px] leading-[20px] text-[var(--text-secondary)]">
+                Isi assessment untuk tahu jalur kerja mana yang paling sesuai. Butuh waktu sekitar 15 menit.
+              </p>
+            </div>
+          </div>
+          <Button variant="primary" onClick={() => console.log('Start Pre-Assessment → F-01')}>
+            Mulai Assessment
+          </Button>
+        </Card>
+
+        {/* Browsable JaKer List */}
+        <div>
+          <h4 className="mb-3">Jalur Kerja yang Tersedia</h4>
+          <div className="space-y-3">
+            {jakerOptions.map((jaker) => (
+              <Card
+                key={jaker.id}
+                variant="cream"
+                className="cursor-pointer hover:shadow-md transition-shadow"
+                onClick={() => console.log(`View JaKer detail: ${jaker.id} (browse mode)`)}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1">
+                    <StatusPill variant="destination" className="mb-2">
+                      {jaker.destinationEmoji} {jaker.destination}
+                    </StatusPill>
+                    <h4 className="mb-1">{jaker.title}</h4>
+                    <p className="text-[12px] text-[var(--text-muted)] mb-2">
+                      {jaker.employer}
+                    </p>
+                    <p className="text-[13px] leading-[20px] text-[var(--text-secondary)]">
+                      {jaker.tagline}
+                    </p>
+                  </div>
+                  <ChevronRight size={20} className="text-[var(--text-muted)] flex-shrink-0 mt-1" />
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Info Banner */}
+        <Card variant="default" className="bg-[var(--accent-blue-100)] border-l-4 border-[var(--accent-blue-700)]">
+          <div className="flex gap-3">
+            <Info size={20} className="text-[var(--accent-blue-700)] flex-shrink-0 mt-0.5" />
+            <p className="text-[13px] leading-[20px] text-[var(--text-secondary)]">
+              Lihat dulu jalur-jalur yang tersedia. Setelah assessment, kami kasih rekomendasi yang paling cocok untukmu!
+            </p>
+          </div>
+        </Card>
+
+        {/* Why Assessment Matters */}
+        <Card variant="default">
+          <div className="mb-4">
+            <h4 className="mb-2">Kenapa assessment penting?</h4>
+            <ul className="space-y-2 text-[14px] leading-[22px] text-[var(--text-secondary)]">
+              <li className="flex gap-2">
+                <span className="text-[var(--brand-green-500)] flex-shrink-0">✓</span>
+                <span>Kami kenali kekuatan & area pengembanganmu</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-[var(--brand-green-500)] flex-shrink-0">✓</span>
+                <span>Rekomendasi jalur yang paling cocok untukmu</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-[var(--brand-green-500)] flex-shrink-0">✓</span>
+                <span>Persiapan lebih matang sebelum berangkat</span>
+              </li>
+            </ul>
+          </div>
+          <Button variant="text" onClick={() => console.log('Learn more about assessment')}>
+            Pelajari lebih lanjut
+          </Button>
+        </Card>
+      </main>
+
+      <BottomNav
+        activeTab={activeTab}
+        variant="3-tab"
+        onTabChange={setActiveTab}
+      />
+    </div>
+  );
+}

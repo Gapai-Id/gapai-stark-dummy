@@ -7,7 +7,6 @@ import { Card } from '@/components/design-system/Card';
 import { JaKerIdentityCard } from '@/components/design-system/JaKerIdentityCard';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { Clock, CheckCircle2, FileText, Target } from 'lucide-react';
 
 const assessmentSections = [
@@ -42,13 +41,12 @@ const assessmentSections = [
 ];
 
 export default function DashboardAssessmentFresh() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const totalQuestions = assessmentSections.reduce((sum, section) => sum + section.questions, 0);
   const totalDuration = 15;
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Assessment ini membantu kami kenali keahlianmu." />
 
@@ -141,12 +139,6 @@ export default function DashboardAssessmentFresh() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

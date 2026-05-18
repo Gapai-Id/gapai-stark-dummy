@@ -1,23 +1,39 @@
 'use client'
 
 import React from 'react';
-import { Bell } from 'lucide-react';
+import Image from 'next/image';
+import { UserCircle, Bell } from 'lucide-react';
 
 interface StatusBarProps {
-  name: string;
+  name?: string;
+  onAvatarClick?: () => void;
   onNotificationClick?: () => void;
 }
 
-export function StatusBar({ name, onNotificationClick }: StatusBarProps) {
+export function StatusBar({ onAvatarClick, onNotificationClick }: StatusBarProps) {
   return (
-    <div className="h-[60px] flex items-center justify-between px-5">
-      <h2 className="font-bold text-[20px] leading-[28px]">Halo, {name}</h2>
-      <button
-        onClick={onNotificationClick}
-        className="w-10 h-10 flex items-center justify-center text-[var(--text-primary)]"
-      >
-        <Bell size={24} />
-      </button>
+    <div className="h-[60px] flex items-center justify-between px-5 bg-white border-b border-[var(--border-subtle)]">
+      <Image
+        src="/assets/images/gapai-brand.svg"
+        alt="Gapai"
+        width={80}
+        height={33}
+        className="object-contain"
+      />
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onAvatarClick}
+          className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
+          <UserCircle size={24} />
+        </button>
+        <button
+          onClick={onNotificationClick}
+          className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
+          <Bell size={22} />
+        </button>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { FileText, ChevronRight, Info, Calendar } from 'lucide-react';
 
 const CONTEXTUAL_EVENTS = [
@@ -60,10 +59,9 @@ const jakerOptions = [
 ];
 
 export default function DashboardPreAssessment() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Yuk mulai assessment untuk kenali jalur yang cocok untukmu!" />
 
@@ -186,12 +184,6 @@ export default function DashboardPreAssessment() {
           </Button>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

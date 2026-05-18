@@ -6,7 +6,6 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { JaKerIdentityCard } from '@/components/design-system/JaKerIdentityCard';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { ProgressPills } from '@/components/design-system/ProgressPills';
 import { CheckCircle2, Circle, Clock, CreditCard, FileCheck, Video } from 'lucide-react';
@@ -51,12 +50,11 @@ const funnelStages = [
 ];
 
 export default function DashboardPrePipeline() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const currentStageData = funnelStages[currentStage - 1];
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message={`Tahap ${currentStage} dari ${totalStages}: ${currentStageData.label}`} />
 
@@ -164,12 +162,6 @@ export default function DashboardPrePipeline() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

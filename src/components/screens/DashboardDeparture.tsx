@@ -6,7 +6,6 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { CheckCircle2, Plane, FileCheck, Briefcase } from 'lucide-react';
 
@@ -44,7 +43,6 @@ const todayTasks = [
 ];
 
 export default function DashboardDeparture() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const daysUntilDeparture = 7;
   const departureDate = 'Senin, 20 Mei 2026';
@@ -55,7 +53,7 @@ export default function DashboardDeparture() {
   const totalCount = departureChecklist.length;
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Tinggal hitungan hari! Pastikan semua siap." />
 
@@ -176,12 +174,6 @@ export default function DashboardDeparture() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="4-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { ProgressPills } from '@/components/design-system/ProgressPills';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 
@@ -17,10 +16,9 @@ const matchReasons = [
 ];
 
 export default function FunnelAcceptanceGate() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       {/* Header with back & progress */}
       <div className="bg-white border-b border-[var(--border-subtle)]">
         <div className="h-[60px] flex items-center justify-between px-5">
@@ -96,8 +94,6 @@ export default function FunnelAcceptanceGate() {
           </div>
         </div>
       </main>
-
-      <BottomNav activeTab={activeTab} variant="4-tab" onTabChange={setActiveTab} />
     </div>
   );
 }

@@ -7,7 +7,6 @@ import { Card } from '@/components/design-system/Card';
 import { JaKerIdentityCard } from '@/components/design-system/JaKerIdentityCard';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { CheckCircle2, Circle, PlayCircle } from 'lucide-react';
 
@@ -39,14 +38,13 @@ const assessmentSections = [
 ];
 
 export default function DashboardAssessmentResume() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const completedSections = assessmentSections.filter(s => s.status === 'completed').length;
   const totalSections = assessmentSections.length;
   const overallProgress = Math.round((completedSections / totalSections) * 100 + 15); // +15 for partial section
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Kamu sudah hampir selesai! Tinggal 2 bagian lagi." />
 
@@ -148,12 +146,6 @@ export default function DashboardAssessmentResume() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

@@ -6,16 +6,14 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { Toggle } from '@/components/design-system/Toggle';
 import { FileText, Bell, BookOpen } from 'lucide-react';
 
 export default function DashboardStandbyActive() {
-  const [activeTab, setActiveTab] = useState('beranda');
   const [notificationEnabled, setNotificationEnabled] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Kami sedang pantau peluang baru untukmu." />
 
@@ -88,12 +86,6 @@ export default function DashboardStandbyActive() {
           </Button>
         </div>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

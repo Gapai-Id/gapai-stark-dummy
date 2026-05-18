@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, Clock } from 'lucide-react';
 import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
+import { StatusBar } from '@/components/design-system/StatusBar';
 
 const visaSteps = [
   {
@@ -35,28 +35,29 @@ const visaSteps = [
 ];
 
 export default function TrackDetailVisa() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const completedSteps = visaSteps.filter(s => s.status === 'completed').length;
   const totalSteps = visaSteps.length;
   const progressPercentage = Math.round((completedSteps / totalSteps) * 100);
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
-      {/* Header */}
-      <div className="bg-white border-b border-[var(--border-subtle)]">
-        <div className="h-[60px] flex items-center justify-between px-5">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
+      <StatusBar />
+
+      {/* Secondary nav */}
+      <div className="h-[48px] flex items-center justify-between px-5 bg-white border-b border-[var(--border-subtle)]">
+        <div className="flex items-center">
           <button
             onClick={() => console.log('Go back to P-01')}
-            className="flex items-center gap-1 text-[14px] text-[var(--text-brand)]"
+            className="-ml-2 p-2 mr-1 text-[var(--text-primary)]"
           >
             <ArrowLeft size={20} />
-            <span>Kembali</span>
           </button>
-          <StatusPill variant="active" className="text-[11px] px-3 py-1">
-            Sedang berjalan
-          </StatusPill>
+          <h4>Proses Visa</h4>
         </div>
+        <StatusPill variant="active" className="text-[11px] px-3 py-1">
+          Sedang berjalan
+        </StatusPill>
       </div>
 
       {/* Main Content */}
@@ -148,12 +149,6 @@ export default function TrackDetailVisa() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="4-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

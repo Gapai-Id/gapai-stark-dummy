@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Calendar, Clock, MapPin, Users } from 'lucide-react';
 import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
-import { BottomNav } from '@/components/design-system/BottomNav';
+import { StatusBar } from '@/components/design-system/StatusBar';
 
 const upcomingEvents = [
   {
@@ -61,7 +61,6 @@ const pastEvents = [
 ];
 
 export default function AktivitasAcara() {
-  const [activeTab, setActiveTab] = useState('aktivitas');
   const [activeSubTab, setActiveSubTab] = useState('acara');
 
   const getEventTypePill = (type: string) => {
@@ -71,12 +70,10 @@ export default function AktivitasAcara() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-[var(--border-subtle)]">
-        <div className="h-[60px] flex items-center justify-between px-5">
-          <h3>Aktivitas</h3>
-        </div>
+        <StatusBar />
 
         {/* Sub-tab pills */}
         <div className="flex gap-2 px-5 pb-3 overflow-x-auto">
@@ -198,12 +195,6 @@ export default function AktivitasAcara() {
           </Card>
         </div>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="4-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

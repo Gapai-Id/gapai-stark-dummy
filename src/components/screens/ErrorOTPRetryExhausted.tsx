@@ -1,13 +1,25 @@
 'use client'
 
 import React from 'react';
-import { ShieldAlert } from 'lucide-react';
+import { ArrowLeft, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/design-system/Button';
 
 export default function ErrorOTPRetryExhausted() {
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col items-center justify-center px-5">
-      <div className="w-full max-w-sm text-center">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
+      {/* Header */}
+      <div className="h-[60px] flex items-center px-5">
+        <button
+          onClick={() => console.log('Go back to L-01 Login')}
+          className="flex items-center gap-1 text-[14px] text-[var(--text-brand)]"
+        >
+          <ArrowLeft size={20} />
+          <span>Kembali ke login</span>
+        </button>
+      </div>
+
+      <main className="flex-1 px-5 pt-8 pb-10 text-center">
+        <div className="w-full max-w-sm mx-auto text-center">
         <div className="flex justify-center mb-6">
           <div className="w-20 h-20 rounded-full bg-[var(--brand-green-50)] flex items-center justify-center">
             <ShieldAlert size={40} className="text-[var(--brand-green-500)]" />
@@ -36,15 +48,11 @@ export default function ErrorOTPRetryExhausted() {
           </div>
         </div>
 
-        <div className="space-y-3">
-          <Button variant="primary" onClick={() => console.log('Contact support')}>
-            Hubungi Admin Gapai
-          </Button>
-          <Button variant="outline" onClick={() => console.log('Back to login')}>
-            Kembali ke Login
-          </Button>
+        <Button variant="primary" onClick={() => console.log('Contact support')}>
+          Hubungi Admin Gapai
+        </Button>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

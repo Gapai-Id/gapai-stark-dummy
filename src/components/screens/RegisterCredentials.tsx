@@ -7,6 +7,7 @@ import { InputField } from '@/components/design-system/InputField';
 
 export default function RegisterCredentials() {
   const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -21,6 +22,8 @@ export default function RegisterCredentials() {
     } else if (phone === '08111111111') {
       newErrors.phone = 'duplicate';
     }
+
+    if (!name) newErrors.name = 'Nama wajib diisi';
 
     if (!password) {
       newErrors.password = 'Password wajib diisi';
@@ -37,7 +40,7 @@ export default function RegisterCredentials() {
       return;
     }
 
-    console.log('Submit registration → R-02 OTP');
+    console.log('Submit registration → R-02 OTP', { phone, name });
   };
 
   return (
@@ -97,6 +100,14 @@ export default function RegisterCredentials() {
               </div>
             )}
           </div>
+
+          <InputField
+            label="Nama Lengkap"
+            value={name}
+            onChange={(v) => { setName(v); setErrors((e) => ({ ...e, name: '' })); }}
+            placeholder="Sesuai KTP"
+            error={errors.name}
+          />
 
           <InputField
             label="Buat kata sandi"

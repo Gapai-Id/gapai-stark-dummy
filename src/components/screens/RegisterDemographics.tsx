@@ -165,7 +165,6 @@ function DatePickerSheet({
 }
 
 export default function RegisterDemographics() {
-  const [name, setName] = useState('');
   const [birthDay, setBirthDay] = useState(1);
   const [birthMonth, setBirthMonth] = useState(1);
   const [birthYear, setBirthYear] = useState(CURRENT_YEAR - 25);
@@ -208,7 +207,6 @@ export default function RegisterDemographics() {
 
   const handleSubmit = () => {
     const newErrors: Record<string, string> = {};
-    if (!name) newErrors.name = 'Nama wajib diisi';
     if (!dateSelected) newErrors.birthDate = 'Tanggal lahir wajib diisi';
     if (!gender) newErrors.gender = 'Jenis kelamin wajib dipilih';
     if (!province) newErrors.province = 'Provinsi wajib dipilih';
@@ -221,7 +219,7 @@ export default function RegisterDemographics() {
       return;
     }
     console.log('Submit demographics → R-04', {
-      name, gender, province, city,
+      gender, province, city,
       birthDate: `${birthDay} ${MONTH_NAMES[birthMonth - 1]} ${birthYear}`,
     });
   };
@@ -249,14 +247,6 @@ export default function RegisterDemographics() {
 
         <Card variant="default">
           <div className="space-y-4">
-            <InputField
-              label="Nama Lengkap"
-              value={name}
-              onChange={setName}
-              placeholder="Sesuai KTP"
-              error={errors.name}
-            />
-
             {/* Date field — tappable row */}
             <div>
               <label className="block text-[12px] leading-[18px] text-[var(--text-muted)] mb-1">

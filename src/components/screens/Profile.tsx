@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { StatusBar } from '@/components/design-system/StatusBar';
 import { Card } from '@/components/design-system/Card';
 import { ListRow } from '@/components/design-system/ListRow';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { User, Phone, Mail, MapPin, Calendar, Settings, Bell, Lock, Globe, LogOut, ChevronRight } from 'lucide-react';
 
@@ -74,10 +73,9 @@ const settingsMenu = [
 ];
 
 export default function Profile() {
-  const [activeTab, setActiveTab] = useState('profil');
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
 
       <main className="px-5 py-4 space-y-4">
@@ -197,12 +195,6 @@ export default function Profile() {
           </p>
         </div>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

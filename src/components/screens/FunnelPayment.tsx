@@ -5,7 +5,6 @@ import { StatusBar } from '@/components/design-system/StatusBar';
 import { Card } from '@/components/design-system/Card';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { ProgressPills } from '@/components/design-system/ProgressPills';
 import { ArrowLeft, CheckCircle2, Clock } from 'lucide-react';
 
@@ -16,14 +15,13 @@ const coveredItems = [
 ];
 
 export default function FunnelPayment() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const deadlineDate = 'Jumat, 16 Mei 2026 · 23.59 WIB';
   const daysLeft = 2;
   const hoursLeft = 14;
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       {/* Header with back & progress */}
       <div className="bg-white border-b border-[var(--border-subtle)]">
         <div className="h-[60px] flex items-center justify-between px-5">
@@ -103,8 +101,6 @@ export default function FunnelPayment() {
           </Button>
         </div>
       </main>
-
-      <BottomNav activeTab={activeTab} variant="4-tab" onTabChange={setActiveTab} />
     </div>
   );
 }

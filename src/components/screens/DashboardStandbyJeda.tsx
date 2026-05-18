@@ -6,16 +6,14 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { Eye, BookOpen } from 'lucide-react';
 
 export default function DashboardStandbyJeda() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const jedaStartDate = '5 Mei 2026';
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Kamu sedang jeda. Profil tetap aktif." />
 
@@ -77,12 +75,6 @@ export default function DashboardStandbyJeda() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

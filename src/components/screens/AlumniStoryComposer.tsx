@@ -5,10 +5,9 @@ import { ArrowLeft, Upload, X } from 'lucide-react';
 import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
+import { StatusBar } from '@/components/design-system/StatusBar';
 
 export default function AlumniStoryComposer() {
-  const [activeTab, setActiveTab] = useState('aktivitas');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [hasPhoto, setHasPhoto] = useState(false);
@@ -16,20 +15,18 @@ export default function AlumniStoryComposer() {
   const isValid = title.trim().length > 0 && content.trim().length > 0;
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
-      {/* Header */}
-      <div className="bg-white border-b border-[var(--border-subtle)]">
-        <div className="h-[60px] flex items-center justify-between px-5">
-          <button
-            onClick={() => console.log('Cancel and go back')}
-            className="flex items-center gap-1 text-[14px] text-[var(--text-brand)]"
-          >
-            <ArrowLeft size={20} />
-            <span>Batal</span>
-          </button>
-          <h3>Tulis Cerita</h3>
-          <div className="w-[60px]" /> {/* Spacer */}
-        </div>
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
+      <StatusBar />
+
+      {/* Secondary nav */}
+      <div className="h-[48px] flex items-center px-5 bg-white border-b border-[var(--border-subtle)]">
+        <button
+          onClick={() => console.log('Cancel and go back')}
+          className="-ml-2 p-2 mr-1 text-[var(--text-primary)]"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <h4>Tulis Cerita</h4>
       </div>
 
       {/* Main Content */}
@@ -117,12 +114,6 @@ export default function AlumniStoryComposer() {
           )}
         </div>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="4-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

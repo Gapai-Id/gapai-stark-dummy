@@ -7,7 +7,6 @@ import { Card } from '@/components/design-system/Card';
 import { JaKerIdentityCard } from '@/components/design-system/JaKerIdentityCard';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { CheckCircle2, FileText, MessageCircle, User } from 'lucide-react';
 
@@ -70,7 +69,6 @@ const feedItems: FeedItem[] = [
 ];
 
 export default function DashboardActivation() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const today = new Date();
   const dateString = today.toLocaleDateString('id-ID', {
@@ -93,7 +91,7 @@ export default function DashboardActivation() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Kamu punya 2 tugas hari ini. Yuk diselesaikan!" />
 
@@ -214,12 +212,6 @@ export default function DashboardActivation() {
           </Card>
         </div>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="4-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

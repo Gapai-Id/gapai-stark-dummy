@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react';
-import Image from 'next/image';
 import { Card } from '@/components/design-system/Card';
 import { Button } from '@/components/design-system/Button';
-import { ChevronRight, Calendar, UserCircle, Bell } from 'lucide-react';
+import { StatusBar } from '@/components/design-system/StatusBar';
+import { ChevronRight, Calendar } from 'lucide-react';
 
 const PA_STEPS = [
   { id: 1, label: 'Negara Tujuan', done: true },
@@ -39,30 +39,7 @@ const nextStep = PA_STEPS.find((s) => !s.done);
 export default function DashboardPreAssessmentInProgressNoNav() {
   return (
     <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
-      {/* Header */}
-      <div className="h-[56px] px-5 flex items-center justify-between border-b border-[var(--border-default)] bg-white">
-        <Image
-          src="/assets/images/gapai-brand.svg"
-          alt="Gapai"
-          width={80}
-          height={33}
-          className="object-contain"
-        />
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Go to Akun')}
-            className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-          >
-            <UserCircle size={24} />
-          </button>
-          <button
-            onClick={() => console.log('Go to Notifikasi')}
-            className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-          >
-            <Bell size={22} />
-          </button>
-        </div>
-      </div>
+      <StatusBar />
 
       <main className="flex-1 px-5 py-4 space-y-4 pb-10">
         {/* Resume PA card */}

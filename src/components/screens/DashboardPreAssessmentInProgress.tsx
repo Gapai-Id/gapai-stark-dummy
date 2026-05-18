@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { StatusBar } from '@/components/design-system/StatusBar';
 import { Card } from '@/components/design-system/Card';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { ChevronRight, Calendar } from 'lucide-react';
 
 const PA_STEPS = [
@@ -38,10 +37,9 @@ const progressPct = Math.round((completedSteps / PA_STEPS.length) * 100);
 const nextStep = PA_STEPS.find((s) => !s.done);
 
 export default function DashboardPreAssessmentInProgress() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
 
       <main className="px-5 py-4 space-y-4">
@@ -123,8 +121,6 @@ export default function DashboardPreAssessmentInProgress() {
           </div>
         </div>
       </main>
-
-      <BottomNav activeTab={activeTab} variant="3-tab" onTabChange={setActiveTab} />
     </div>
   );
 }

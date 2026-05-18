@@ -6,7 +6,6 @@ import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { ArrowLeft, CheckCircle2, ChevronDown, ChevronUp, DollarSign, Calendar } from 'lucide-react';
 
 interface MatchReason {
@@ -61,7 +60,6 @@ const jobDetails: JobDetail[] = [
 ];
 
 export default function JaKerDetail() {
-  const [activeTab, setActiveTab] = useState('beranda');
   const [expandedDetail, setExpandedDetail] = useState<string | null>(null);
 
   const toggleDetail = (id: string) => {
@@ -69,16 +67,18 @@ export default function JaKerDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
-      {/* Header with back button */}
-      <div className="h-[60px] flex items-center px-5 bg-white border-b border-[var(--border-subtle)]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
+      <StatusBar name="Sari" />
+
+      {/* Secondary nav — back button + page title */}
+      <div className="h-[48px] flex items-center px-5 bg-white border-b border-[var(--border-subtle)]">
         <button
           onClick={() => console.log('Go back')}
-          className="mr-3 -ml-2 p-2"
+          className="-ml-2 p-2 mr-1 text-[var(--text-primary)]"
         >
-          <ArrowLeft size={24} className="text-[var(--text-primary)]" />
+          <ArrowLeft size={20} />
         </button>
-        <h3>Detail Jalur Kerja</h3>
+        <h4>Detail Jalur Kerja</h4>
       </div>
 
       <main className="px-5 py-4 space-y-4">
@@ -199,12 +199,6 @@ export default function JaKerDetail() {
           </div>
         </div>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

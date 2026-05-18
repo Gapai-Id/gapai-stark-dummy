@@ -6,7 +6,6 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { ChevronRight } from 'lucide-react';
 
 interface JaKerOption {
@@ -59,7 +58,6 @@ const jakerOptions: JaKerOption[] = [
 ];
 
 export default function DashboardJaKerSelection() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const getFitColor = (score: number) => {
     if (score >= 85) return 'text-[var(--brand-green-500)]';
@@ -68,7 +66,7 @@ export default function DashboardJaKerSelection() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Hasil assessmentmu sudah keluar! Pilih jalur yang paling cocok." />
 
@@ -139,12 +137,6 @@ export default function DashboardJaKerSelection() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

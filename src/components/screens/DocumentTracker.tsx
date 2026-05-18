@@ -6,7 +6,6 @@ import { ContextRow } from '@/components/design-system/ContextRow';
 import { Card } from '@/components/design-system/Card';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { FileText, CheckCircle2, Clock, AlertCircle, Upload, Eye } from 'lucide-react';
 
@@ -72,7 +71,6 @@ const documents: Document[] = [
 ];
 
 export default function DocumentTracker() {
-  const [activeTab, setActiveTab] = useState('dokumen');
 
   const verifiedCount = documents.filter(d => d.status === 'verified').length;
   const totalCount = documents.length;
@@ -114,7 +112,7 @@ export default function DocumentTracker() {
   }, {} as Record<string, Document[]>);
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Pastikan semua dokumen sudah lengkap dan terverifikasi." />
 
@@ -233,12 +231,6 @@ export default function DocumentTracker() {
           </div>
         </Card>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

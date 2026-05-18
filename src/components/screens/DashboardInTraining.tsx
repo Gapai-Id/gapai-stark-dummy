@@ -7,7 +7,6 @@ import { Card } from '@/components/design-system/Card';
 import { JaKerIdentityCard } from '@/components/design-system/JaKerIdentityCard';
 import { ListRow } from '@/components/design-system/ListRow';
 import { Button } from '@/components/design-system/Button';
-import { BottomNav } from '@/components/design-system/BottomNav';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { BookOpen, CheckCircle2, PlayCircle, Lock } from 'lucide-react';
 
@@ -51,14 +50,13 @@ const trainingModules: TrainingModule[] = [
 ];
 
 export default function DashboardInTraining() {
-  const [activeTab, setActiveTab] = useState('beranda');
 
   const completedModules = trainingModules.filter(m => m.status === 'completed').length;
   const totalModules = trainingModules.length;
   const overallProgress = Math.round((completedModules / totalModules) * 100);
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto relative pb-[106px]">
+    <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
       <StatusBar name="Sari" />
       <ContextRow message="Kamu sedang dalam tahap pelatihan. Tetap semangat!" />
 
@@ -164,12 +162,6 @@ export default function DashboardInTraining() {
           Lanjutkan Pelatihan
         </Button>
       </main>
-
-      <BottomNav
-        activeTab={activeTab}
-        variant="3-tab"
-        onTabChange={setActiveTab}
-      />
     </div>
   );
 }

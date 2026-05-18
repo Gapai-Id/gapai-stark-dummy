@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { InputField } from '@/components/design-system/InputField';
 import { Button } from '@/components/design-system/Button';
 
@@ -17,8 +18,14 @@ export default function Login() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <div className="w-20 h-20 rounded-full bg-[var(--brand-green-500)] flex items-center justify-center">
-            <span className="text-[40px] font-bold text-white">G</span>
+          <div className="w-20 h-20 rounded-full overflow-hidden">
+            <Image
+              src="/gapai-logo.jpg"
+              alt="Gapai"
+              width={80}
+              height={80}
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
 

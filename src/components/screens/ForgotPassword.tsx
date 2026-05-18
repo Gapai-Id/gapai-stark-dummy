@@ -26,41 +26,39 @@ export default function ForgotPassword() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-5">
-        <div className="w-full max-w-sm">
-          {/* Icon */}
-          <div className="text-center mb-6">
-            <div className="text-[56px] mb-3">🔑</div>
-          </div>
-
-          {/* Title */}
-          <div className="text-center mb-8">
-            <h2 className="mb-2">Lupa kata sandi?</h2>
-            <p className="text-[14px] text-[var(--text-secondary)]">
-              Masukkan nomor HP kamu, kami kirim kode verifikasi untuk reset kata sandi.
-            </p>
-          </div>
-
-          {/* Form */}
-          <div className="space-y-6">
-            <InputField
-              label="Nomor HP"
-              type="tel"
-              placeholder="+62 812-3456-7890"
-              value={phone}
-              onChange={(v) => setPhone(v)}
-            />
-
-            <Button
-              variant="primary"
-              onClick={handleSubmit}
-              disabled={!phone}
-            >
-              Kirim Kode
-            </Button>
-          </div>
+      <main className="flex-1 px-5 pt-8 pb-10">
+        {/* Icon */}
+        <div className="text-center mb-6">
+          <div className="text-[56px] mb-3">🔑</div>
         </div>
-      </div>
+
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h2 className="mb-2">Lupa kata sandi?</h2>
+          <p className="text-[14px] text-[var(--text-secondary)]">
+            Masukkan nomor HP kamu, kami kirim kode verifikasi untuk reset kata sandi.
+          </p>
+        </div>
+
+        {/* Form */}
+        <div className="space-y-6">
+          <InputField
+            label="Nomor HP"
+            type="tel"
+            placeholder="+62 812-3456-7890"
+            value={phone}
+            onChange={(v) => setPhone(v)}
+          />
+
+          <Button
+            variant="primary"
+            onClick={handleSubmit}
+            disabled={!phone}
+          >
+            Kirim Kode
+          </Button>
+        </div>
+      </main>
     </div>
   );
 }

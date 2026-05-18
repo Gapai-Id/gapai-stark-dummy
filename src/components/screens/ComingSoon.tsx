@@ -16,7 +16,7 @@ export default function ComingSoon({
 }: Props) {
   return (
     <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
-      <main className="flex-1 px-5 pb-10 flex flex-col items-center justify-center text-center">
+      <main className="flex-1 px-5 pt-16 pb-10 flex flex-col items-center text-center">
         <div className="text-[64px] mb-6">🚧</div>
 
         <h2 className="mb-3">Segera Hadir</h2>

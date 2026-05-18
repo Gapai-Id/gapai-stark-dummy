@@ -24,7 +24,7 @@ export default function PreAssessmentEligibilityGate() {
         </button>
       </div>
 
-      <main className="flex-1 px-5 py-8 flex flex-col">
+      <main className="flex-1 px-5 pb-10 flex flex-col">
         {/* Icon + Title */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-full bg-[var(--brand-green-50)] flex items-center justify-center mx-auto mb-5">

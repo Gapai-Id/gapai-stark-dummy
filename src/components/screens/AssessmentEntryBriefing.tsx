@@ -21,7 +21,7 @@ export default function AssessmentEntryBriefing() {
         </div>
       </div>
 
-      <main className="flex-1 px-5 py-5 space-y-4 pb-10">
+      <main className="flex-1 px-5 pt-5 pb-10 space-y-4">
         <JaKerIdentityCard
           destination="JEPANG"
           destinationEmoji="🇯🇵"

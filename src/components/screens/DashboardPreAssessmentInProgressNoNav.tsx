@@ -50,16 +50,16 @@ export default function DashboardPreAssessmentInProgressNoNav() {
         />
         <div className="flex items-center gap-3">
           <button
-            onClick={() => console.log('Go to Notifikasi')}
-            className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-          >
-            <Bell size={22} />
-          </button>
-          <button
             onClick={() => console.log('Go to Akun')}
             className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
           >
             <UserCircle size={24} />
+          </button>
+          <button
+            onClick={() => console.log('Go to Notifikasi')}
+            className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+          >
+            <Bell size={22} />
           </button>
         </div>
       </div>

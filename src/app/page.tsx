@@ -71,15 +71,20 @@ import AssessmentResultPass from '@/components/screens/AssessmentResultPass'
 import AssessmentResultFail from '@/components/screens/AssessmentResultFail'
 import PreAssessmentEligibilityGate from '@/components/screens/PreAssessmentEligibilityGate'
 import PreAssessmentBlocked from '@/components/screens/PreAssessmentBlocked'
-import PreAssessmentBasicInfo from '@/components/screens/PreAssessmentBasicInfo'
+import PreAssessmentDestination from '@/components/screens/PreAssessmentDestination'
 import PreAssessmentStep1 from '@/components/screens/PreAssessmentStep1'
 import PreAssessmentStep2 from '@/components/screens/PreAssessmentStep2'
 import PreAssessmentStep3 from '@/components/screens/PreAssessmentStep3'
 import PreAssessmentLanguage from '@/components/screens/PreAssessmentLanguage'
 import PreAssessmentEducation from '@/components/screens/PreAssessmentEducation'
+import PreAssessmentBasicInfo from '@/components/screens/PreAssessmentBasicInfo'
+import PreAssessmentMentalHealth from '@/components/screens/PreAssessmentMentalHealth'
 import PreAssessmentResults from '@/components/screens/PreAssessmentResults'
 import PreAssessmentPhysicalConditions from '@/components/screens/PreAssessmentPhysicalConditions'
 import PreAssessmentResultsFlow from '@/components/screens/PreAssessmentResultsFlow'
+import DashboardPreAssessmentInProgress from '@/components/screens/DashboardPreAssessmentInProgress'
+import DashboardPreAssessmentInProgressNoNav from '@/components/screens/DashboardPreAssessmentInProgressNoNav'
+import ComingSoon from '@/components/screens/ComingSoon'
 
 const screens = [
   { id: 'R-01', name: 'Register Credentials (R-01)', component: RegisterCredentials },
@@ -87,6 +92,8 @@ const screens = [
   { id: 'R-03', name: 'Register Demographics (R-03)', component: RegisterDemographics },
   { id: 'R-04', name: 'Register Success (R-04)', component: RegisterSuccess },
   { id: 'D-S1', name: 'Dashboard Pre-Assessment (D-S1)', component: DashboardPreAssessment },
+  { id: 'D-S1b', name: 'Dashboard PA In Progress (D-S1b)', component: DashboardPreAssessmentInProgress },
+  { id: 'D-S1b-alt', name: 'Dashboard PA In Progress — No Nav (D-S1b-alt)', component: DashboardPreAssessmentInProgressNoNav },
   { id: 'D-S2', name: 'Dashboard JaKer Selection (D-S2)', component: DashboardJaKerSelection },
   { id: 'D-S3-fresh', name: 'Dashboard Assessment Fresh (D-S3-fresh)', component: DashboardAssessmentFresh },
   { id: 'D-S3-resume', name: 'Dashboard Assessment Resume (D-S3-resume)', component: DashboardAssessmentResume },
@@ -152,15 +159,18 @@ const screens = [
   { id: 'AS-06', name: 'Assessment Result Fail (AS-06)', component: AssessmentResultFail },
   { id: 'PA-01', name: 'Pre-Assessment Eligibility Gate (PA-01)', component: PreAssessmentEligibilityGate },
   { id: 'PA-02', name: 'Pre-Assessment Blocked (PA-02)', component: PreAssessmentBlocked },
-  { id: 'PA-03', name: 'Pre-Assessment Basic Info (PA-03)', component: PreAssessmentBasicInfo },
-  { id: 'PA-04', name: 'Pre-Assessment Step 1 — Destination / Industry (PA-04)', component: PreAssessmentStep1 },
-  { id: 'PA-05', name: 'Pre-Assessment Step 2 — Skills (PA-05)', component: PreAssessmentStep2 },
-  { id: 'PA-06', name: 'Pre-Assessment Step 3 — Tools (PA-06)', component: PreAssessmentStep3 },
+  { id: 'PA-03', name: 'Pre-Assessment Destination (PA-03)', component: PreAssessmentDestination },
+  { id: 'PA-04', name: 'Pre-Assessment Experience + Industry (PA-04)', component: PreAssessmentStep1 },
+  { id: 'PA-05', name: 'Pre-Assessment Skills (PA-05)', component: PreAssessmentStep2 },
+  { id: 'PA-06', name: 'Pre-Assessment Tools (PA-06)', component: PreAssessmentStep3 },
   { id: 'PA-07', name: 'Pre-Assessment Language (PA-07)', component: PreAssessmentLanguage },
   { id: 'PA-08', name: 'Pre-Assessment Education (PA-08)', component: PreAssessmentEducation },
-  { id: 'PA-09', name: 'Pre-Assessment Results + Physical Gate (PA-09/10)', component: PreAssessmentResultsFlow },
-  { id: 'PA-09-standalone', name: 'Pre-Assessment Results standalone (PA-09)', component: PreAssessmentResults },
-  { id: 'PA-10', name: 'Pre-Assessment Physical Conditions Gate (PA-10)', component: PreAssessmentPhysicalConditions },
+  { id: 'PA-09', name: 'Pre-Assessment Physical Data (PA-09)', component: PreAssessmentBasicInfo },
+  { id: 'PA-10', name: 'Pre-Assessment Mental Health (PA-10)', component: PreAssessmentMentalHealth },
+  { id: 'PA-11', name: 'Pre-Assessment Mental Health → Results → Physical (Flow)', component: PreAssessmentResultsFlow },
+  { id: 'PA-11-standalone', name: 'Pre-Assessment Results standalone (PA-11)', component: PreAssessmentResults },
+  { id: 'PA-12', name: 'Pre-Assessment Physical Conditions Gate (PA-12)', component: PreAssessmentPhysicalConditions },
+  { id: 'CS-01', name: 'Coming Soon (CS-01)', component: ComingSoon },
 ]
 
 export default function PrototypePage() {

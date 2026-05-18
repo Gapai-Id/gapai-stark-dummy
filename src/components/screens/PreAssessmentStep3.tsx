@@ -19,7 +19,7 @@ export default function PreAssessmentStep3() {
     setTools((prev) => prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]);
 
   const handleSubmit = () => {
-    console.log('Step 3 complete → PA-07 Language', { tools });
+    console.log('Tools complete → PA-07 Language', { tools });
   };
 
   return (
@@ -27,7 +27,7 @@ export default function PreAssessmentStep3() {
       {/* Header */}
       <div className="h-[60px] flex items-center px-5">
         <button
-          onClick={() => console.log('Go back to PA-05 Step 2')}
+          onClick={() => console.log('Go back to PA-05 Skills')}
           className="flex items-center gap-1 text-[14px] text-[var(--text-brand)]"
         >
           <ArrowLeft size={20} />
@@ -39,11 +39,11 @@ export default function PreAssessmentStep3() {
         {/* Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[12px] text-[var(--text-muted)]">Langkah 4 dari 6</p>
-            <p className="text-[12px] font-medium text-[var(--text-brand)]">67%</p>
+            <p className="text-[12px] text-[var(--text-muted)]">Langkah 4 dari 8</p>
+            <p className="text-[12px] font-medium text-[var(--text-brand)]">50%</p>
           </div>
           <div className="h-1.5 rounded-full bg-[var(--neutral-200)]">
-            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-2/3" />
+            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[50%]" />
           </div>
         </div>
 
@@ -94,7 +94,7 @@ export default function PreAssessmentStep3() {
             Lanjutkan
           </Button>
           <button
-            onClick={() => console.log('Skip Step 3 → PA-07 Language')}
+            onClick={() => console.log('Skip Tools → PA-07 Language')}
             className="w-full text-[14px] text-[var(--text-muted)] text-center py-2"
           >
             Lewati langkah ini

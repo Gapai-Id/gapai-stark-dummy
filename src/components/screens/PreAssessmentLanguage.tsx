@@ -13,10 +13,10 @@ const LANGUAGE_OPTIONS = [
 ];
 
 const LEVELS = [
-  { value: 'basic', label: 'Dasar' },
-  { value: 'conversational', label: 'Percakapan sehari-hari' },
-  { value: 'professional', label: 'Profesional / Fasih' },
-  { value: 'native', label: 'Bahasa ibu' },
+  { value: 'basic', label: 'Dasar', desc: 'Mengerti kata-kata umum, belum bisa percakapan' },
+  { value: 'conversational', label: 'Percakapan sehari-hari', desc: 'Bisa ngobrol dan memahami situasi umum' },
+  { value: 'professional', label: 'Profesional / Fasih', desc: 'Lancar untuk kerja dan diskusi formal' },
+  { value: 'native', label: 'Bilingual', desc: 'Tumbuh dengan bahasa ini atau fasih seperti penutur asli' },
 ];
 
 interface LangEntry {
@@ -76,11 +76,11 @@ export default function PreAssessmentLanguage() {
         {/* Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[12px] text-[var(--text-muted)]">Langkah 5 dari 6</p>
-            <p className="text-[12px] font-medium text-[var(--text-brand)]">83%</p>
+            <p className="text-[12px] text-[var(--text-muted)]">Langkah 5 dari 8</p>
+            <p className="text-[12px] font-medium text-[var(--text-brand)]">63%</p>
           </div>
           <div className="h-1.5 rounded-full bg-[var(--neutral-200)]">
-            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[83%]" />
+            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[63%]" />
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export default function PreAssessmentLanguage() {
             <h2>Kemampuan Bahasa</h2>
           </div>
           <p className="text-[14px] leading-[22px] text-[var(--text-secondary)]">
-            Bahasa adalah faktor terpenting dalam pencocokan jalur kerja. Ceritakan bahasa yang kamu bisa.
+            Bahasa adalah salah satu faktor utama dalam pencocokan jalur kerja. Ceritakan bahasa yang kamu bisa.
           </p>
         </div>
 
@@ -130,21 +130,47 @@ export default function PreAssessmentLanguage() {
 
                 {/* Level select */}
                 <div>
-                  <label className="block text-[12px] text-[var(--text-muted)] mb-1">Level kemampuan</label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {LEVELS.map((lv) => (
-                      <button
-                        key={lv.value}
-                        onClick={() => updateEntry(entry.id, 'level', lv.value)}
-                        className={`px-2 py-2 rounded-[8px] border-[1.5px] text-[12px] font-medium transition-colors text-left ${
-                          entry.level === lv.value
-                            ? 'border-[var(--border-brand)] bg-[var(--brand-green-50)] text-[var(--brand-green-700)]'
-                            : 'border-[var(--border-default)] text-[var(--text-primary)]'
-                        }`}
-                      >
-                        {lv.label}
-                      </button>
-                    ))}
+                  <label className="block text-[12px] text-[var(--text-muted)] mb-2">
+                    Level kemampuan — <span className="italic">dari terendah ke tertinggi</span>
+                  </label>
+                  <div className="space-y-1.5">
+                    {LEVELS.map((lv, idx) => {
+                      const selected = entry.level === lv.value;
+                      return (
+                        <button
+                          key={lv.value}
+                          onClick={() => updateEntry(entry.id, 'level', lv.value)}
+                          className={`w-full text-left px-3 py-2.5 rounded-[8px] border-[1.5px] flex items-center gap-3 transition-colors ${
+                            selected
+                              ? 'border-[var(--border-brand)] bg-[var(--brand-green-50)]'
+                              : 'border-[var(--border-default)] bg-white'
+                          }`}
+                        >
+                          <span className={`text-[11px] font-semibold w-4 flex-shrink-0 ${
+                            selected ? 'text-[var(--brand-green-600)]' : 'text-[var(--text-muted)]'
+                          }`}>
+                            {idx + 1}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className={`text-[13px] font-semibold leading-[18px] ${
+                              selected ? 'text-[var(--brand-green-700)]' : 'text-[var(--text-primary)]'
+                            }`}>
+                              {lv.label}
+                            </p>
+                            <p className="text-[11px] text-[var(--text-muted)] leading-[16px] mt-0.5">
+                              {lv.desc}
+                            </p>
+                          </div>
+                          {selected && (
+                            <div className="w-4 h-4 rounded-full bg-[var(--brand-green-500)] flex items-center justify-center flex-shrink-0">
+                              <svg width="8" height="6" viewBox="0 0 10 8" fill="none">
+                                <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                   {submitted && !entry.level && (
                     <p className="text-[12px] text-red-500 mt-1">Pilih level kemampuan</p>

@@ -1,37 +1,58 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ArrowLeft, User } from 'lucide-react';
 import { Button } from '@/components/design-system/Button';
-import { InputField } from '@/components/design-system/InputField';
 import { Card } from '@/components/design-system/Card';
 
-// Mock pre-filled from R-03 registration profile
 const PROFILE = {
   name: 'Sari Dewi',
   gender: 'Perempuan',
   dateOfBirth: '15 Mar 1998',
 };
 
+type BmiCategory = {
+  label: string;
+  color: string;
+  bg: string;
+};
+
+function getBmiCategory(bmi: number): BmiCategory {
+  if (bmi < 18.5) return { label: 'Berat badan kurang', color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200' };
+  if (bmi < 25.0) return { label: 'Normal', color: 'text-[var(--brand-green-700)]', bg: 'bg-[var(--brand-green-50)] border-[var(--border-brand)]' };
+  if (bmi < 30.0) return { label: 'Kelebihan berat badan', color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200' };
+  return { label: 'Obesitas', color: 'text-red-600', bg: 'bg-red-50 border-red-200' };
+}
+
 export default function PreAssessmentBasicInfo() {
   const [heightCm, setHeightCm] = useState('');
   const [weightKg, setWeightKg] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const h = Number(heightCm);
+  const w = Number(weightKg);
+  const validHeight = !isNaN(h) && h >= 100 && h <= 250;
+  const validWeight = !isNaN(w) && w >= 30 && w <= 200;
+
+  const bmi = useMemo(() => {
+    if (!heightCm || !weightKg || !validHeight || !validWeight) return null;
+    return w / ((h / 100) ** 2);
+  }, [heightCm, weightKg, validHeight, validWeight, h, w]);
+
+  const bmiCategory = bmi !== null ? getBmiCategory(bmi) : null;
+
   const handleSubmit = () => {
     const newErrors: Record<string, string> = {};
-    const h = Number(heightCm);
-    const w = Number(weightKg);
 
     if (!heightCm) {
       newErrors.height = 'Tinggi badan wajib diisi';
-    } else if (isNaN(h) || h < 100 || h > 250) {
+    } else if (!validHeight) {
       newErrors.height = 'Masukkan tinggi yang valid (100–250 cm)';
     }
 
     if (!weightKg) {
       newErrors.weight = 'Berat badan wajib diisi';
-    } else if (isNaN(w) || w < 30 || w > 200) {
+    } else if (!validWeight) {
       newErrors.weight = 'Masukkan berat yang valid (30–200 kg)';
     }
 
@@ -40,14 +61,12 @@ export default function PreAssessmentBasicInfo() {
       return;
     }
 
-    // Simulate BMI check — server-side in production
-    const bmi = w / ((h / 100) ** 2);
-    if (bmi < 18.5 || bmi > 25.0) {
-      console.log(`BMI ${bmi.toFixed(1)} out of range → PA-02 Blocked`);
-      return;
-    }
-
-    console.log(`BMI ${bmi.toFixed(1)} OK → PA-04 Step 1`);
+    console.log('Physical data complete → PA-10 Mental Health', {
+      heightCm: h,
+      weightKg: w,
+      bmi: bmi?.toFixed(1),
+      category: bmiCategory?.label,
+    });
   };
 
   return (
@@ -55,7 +74,7 @@ export default function PreAssessmentBasicInfo() {
       {/* Header */}
       <div className="h-[60px] flex items-center px-5">
         <button
-          onClick={() => console.log('Go back to PA-01 EligibilityGate')}
+          onClick={() => console.log('Go back to PA-08 Education')}
           className="flex items-center gap-1 text-[14px] text-[var(--text-brand)]"
         >
           <ArrowLeft size={20} />
@@ -67,22 +86,22 @@ export default function PreAssessmentBasicInfo() {
         {/* Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[12px] text-[var(--text-muted)]">Langkah 1 dari 6</p>
-            <p className="text-[12px] font-medium text-[var(--text-brand)]">17%</p>
+            <p className="text-[12px] text-[var(--text-muted)]">Langkah 7 dari 8</p>
+            <p className="text-[12px] font-medium text-[var(--text-brand)]">88%</p>
           </div>
           <div className="h-1.5 rounded-full bg-[var(--neutral-200)]">
-            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[17%]" />
+            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[88%]" />
           </div>
         </div>
 
         <div>
-          <h2 className="mb-1">Data Diri</h2>
+          <h2 className="mb-1">Tinggi & Berat Badan</h2>
           <p className="text-[14px] leading-[22px] text-[var(--text-secondary)]">
-            Pastikan data akurat — ini digunakan untuk mencocokkan jalur kerja yang tepat untukmu.
+            Digunakan untuk mencocokkan jalur kerja yang sesuai kondisi fisikmu.
           </p>
         </div>
 
-        {/* Pre-filled from profile — read only */}
+        {/* Pre-filled from profile */}
         <Card variant="tinted">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 rounded-full bg-[var(--brand-green-100)] flex items-center justify-center flex-shrink-0">
@@ -148,6 +167,19 @@ export default function PreAssessmentBasicInfo() {
               </div>
               {errors.weight && <p className="text-[12px] text-red-500 mt-1">{errors.weight}</p>}
             </div>
+
+            {/* BMI result — shown when both inputs are valid */}
+            {bmi !== null && bmiCategory !== null && (
+              <div className={`rounded-[8px] border-[1.5px] px-4 py-3 flex items-center justify-between ${bmiCategory.bg}`}>
+                <div>
+                  <p className="text-[11px] text-[var(--text-muted)] mb-0.5">Indeks Massa Tubuh (BMI)</p>
+                  <p className={`text-[13px] font-semibold ${bmiCategory.color}`}>{bmiCategory.label}</p>
+                </div>
+                <p className={`text-[28px] font-bold leading-none ${bmiCategory.color}`}>
+                  {bmi.toFixed(1)}
+                </p>
+              </div>
+            )}
           </div>
         </Card>
 

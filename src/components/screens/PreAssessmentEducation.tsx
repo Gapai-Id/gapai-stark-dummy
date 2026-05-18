@@ -60,11 +60,11 @@ export default function PreAssessmentEducation() {
         {/* Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[12px] text-[var(--text-muted)]">Langkah 6 dari 6</p>
-            <p className="text-[12px] font-medium text-[var(--text-brand)]">100%</p>
+            <p className="text-[12px] text-[var(--text-muted)]">Langkah 6 dari 8</p>
+            <p className="text-[12px] font-medium text-[var(--text-brand)]">75%</p>
           </div>
           <div className="h-1.5 rounded-full bg-[var(--neutral-200)]">
-            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-full" />
+            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[75%]" />
           </div>
         </div>
 
@@ -125,7 +125,7 @@ export default function PreAssessmentEducation() {
         )}
 
         <Button variant="primary" onClick={handleSubmit}>
-          Lihat Rekomendasi Jalur Kerjaku
+          Lanjutkan
         </Button>
       </main>
     </div>

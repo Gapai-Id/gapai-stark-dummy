@@ -1,13 +1,14 @@
 'use client'
 
 import React, { useState } from 'react';
+import PreAssessmentMentalHealth from './PreAssessmentMentalHealth';
 import PreAssessmentResults from './PreAssessmentResults';
 import PreAssessmentPhysicalConditions from './PreAssessmentPhysicalConditions';
 
-type View = 'results' | 'physical';
+type View = 'mental_health' | 'results' | 'physical';
 
 export default function PreAssessmentResultsFlow() {
-  const [view, setView] = useState<View>('results');
+  const [view, setView] = useState<View>('mental_health');
   const [selectedJaker, setSelectedJaker] = useState<string | null>(null);
   const [excludedJakers, setExcludedJakers] = useState<string[]>([]);
 
@@ -32,6 +33,15 @@ export default function PreAssessmentResultsFlow() {
     setSelectedJaker(null);
     setView('results');
   };
+
+  if (view === 'mental_health') {
+    return (
+      <PreAssessmentMentalHealth
+        onComplete={() => setView('results')}
+        onSkip={() => setView('results')}
+      />
+    );
+  }
 
   if (view === 'physical' && selectedJaker) {
     return (

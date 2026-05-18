@@ -7,7 +7,22 @@ import { Card } from '@/components/design-system/Card';
 import { StatusPill } from '@/components/design-system/StatusPill';
 import { Button } from '@/components/design-system/Button';
 import { BottomNav } from '@/components/design-system/BottomNav';
-import { FileText, ChevronRight, Info } from 'lucide-react';
+import { FileText, ChevronRight, Info, Calendar } from 'lucide-react';
+
+const CONTEXTUAL_EVENTS = [
+  {
+    id: 'evt-1',
+    title: 'Webinar: Mengenal Proses Pre-Assessment Gapai',
+    date: 'Rabu, 21 Mei 2026',
+    tag: 'Online',
+  },
+  {
+    id: 'evt-2',
+    title: 'Tanya Jawab: Jalur Kerja Eropa untuk Pemula',
+    date: 'Sabtu, 24 Mei 2026',
+    tag: 'Online',
+  },
+];
 
 const jakerOptions = [
   {
@@ -79,6 +94,32 @@ export default function DashboardPreAssessment() {
             Mulai Assessment
           </Button>
         </Card>
+
+        {/* Contextual Events */}
+        <div>
+          <h4 className="mb-3">Event untukmu</h4>
+          <div className="space-y-2">
+            {CONTEXTUAL_EVENTS.map((evt) => (
+              <button
+                key={evt.id}
+                onClick={() => console.log(`View event: ${evt.id}`)}
+                className="w-full text-left bg-white border-[1.5px] border-[var(--border-default)] rounded-[12px] p-3 flex items-start justify-between gap-3"
+              >
+                <div className="flex-1">
+                  <p className="text-[13px] font-medium text-[var(--text-primary)] mb-1">{evt.title}</p>
+                  <div className="flex items-center gap-1.5">
+                    <Calendar size={12} className="text-[var(--text-muted)]" />
+                    <span className="text-[12px] text-[var(--text-muted)]">{evt.date}</span>
+                    <span className="text-[11px] text-[var(--text-brand)] bg-[var(--brand-green-50)] px-1.5 py-0.5 rounded-full font-medium">
+                      {evt.tag}
+                    </span>
+                  </div>
+                </div>
+                <ChevronRight size={16} className="text-[var(--text-muted)] flex-shrink-0 mt-0.5" />
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Browsable JaKer List */}
         <div>

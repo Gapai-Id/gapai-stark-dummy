@@ -22,7 +22,7 @@ export default function PreAssessmentStep2() {
     setSkills((prev) => prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]);
 
   const handleSubmit = () => {
-    console.log('Step 2 complete → PA-06 Step 3', { skills });
+    console.log('Step 2 complete → PA-06 Tools', { skills });
   };
 
   return (
@@ -30,7 +30,7 @@ export default function PreAssessmentStep2() {
       {/* Header */}
       <div className="h-[60px] flex items-center px-5">
         <button
-          onClick={() => console.log('Go back to PA-04 Step 1')}
+          onClick={() => console.log('Go back to PA-04 Experience + Industry')}
           className="flex items-center gap-1 text-[14px] text-[var(--text-brand)]"
         >
           <ArrowLeft size={20} />
@@ -42,11 +42,11 @@ export default function PreAssessmentStep2() {
         {/* Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[12px] text-[var(--text-muted)]">Langkah 3 dari 6</p>
-            <p className="text-[12px] font-medium text-[var(--text-brand)]">50%</p>
+            <p className="text-[12px] text-[var(--text-muted)]">Langkah 3 dari 8</p>
+            <p className="text-[12px] font-medium text-[var(--text-brand)]">38%</p>
           </div>
           <div className="h-1.5 rounded-full bg-[var(--neutral-200)]">
-            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-1/2" />
+            <div className="h-1.5 rounded-full bg-[var(--brand-green-500)] w-[38%]" />
           </div>
         </div>
 
@@ -98,7 +98,7 @@ export default function PreAssessmentStep2() {
             Lanjutkan
           </Button>
           <button
-            onClick={() => console.log('Skip Step 2 → PA-06 Step 3')}
+            onClick={() => console.log('Skip Skills → PA-06 Tools')}
             className="w-full text-[14px] text-[var(--text-muted)] text-center py-2"
           >
             Lewati — saya tidak memiliki keahlian ini

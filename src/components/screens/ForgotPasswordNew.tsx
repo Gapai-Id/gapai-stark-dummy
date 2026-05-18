@@ -36,8 +36,9 @@ export default function ForgotPasswordNew() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col items-center justify-center px-5">
-        <div className="text-center">
+      <div className="min-h-screen bg-[var(--surface-page)] max-w-[375px] mx-auto flex flex-col">
+        <div className="h-[60px]" />
+        <main className="flex-1 px-5 py-8 text-center">
           <div className="w-16 h-16 rounded-full bg-[var(--brand-green-100)] flex items-center justify-center mx-auto mb-5">
             <CheckCircle2 size={32} className="text-[var(--brand-green-700)]" />
           </div>
@@ -48,7 +49,7 @@ export default function ForgotPasswordNew() {
           <Button variant="primary" onClick={() => console.log('Go to L-01 Login')}>
             Masuk Sekarang
           </Button>
-        </div>
+        </main>
       </div>
     );
   }

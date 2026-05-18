@@ -26,10 +26,10 @@ export default function ForgotPassword() {
       </div>
 
       {/* Content */}
-      <main className="flex-1 px-5 pt-8 pb-10">
+      <main className="flex-1 px-5 py-8">
         {/* Icon */}
         <div className="text-center mb-6">
-          <div className="text-[56px] mb-3">🔑</div>
+          <div className="text-[48px] mb-4">🔑</div>
         </div>
 
         {/* Title */}

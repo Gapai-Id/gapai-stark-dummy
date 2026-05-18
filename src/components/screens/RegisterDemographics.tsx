@@ -239,9 +239,9 @@ export default function RegisterDemographics() {
 
       <main className="flex-1 px-5 pb-10 space-y-5">
         <div>
-          <h2 className="mb-1">Kenalan 👋</h2>
+          <h2 className="mb-1">Tentang Kamu</h2>
           <p className="text-[14px] leading-[22px] text-[var(--text-secondary)]">
-            Cerita sedikit tentang dirimu biar kami bisa kenali kamu lebih baik.
+            Beberapa detail untuk melengkapi profilmu.
           </p>
         </div>
 

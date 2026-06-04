@@ -10,6 +10,12 @@ import DashboardJaKerSelection from '@/components/screens/DashboardJaKerSelectio
 import DashboardAssessmentFresh from '@/components/screens/DashboardAssessmentFresh'
 import DashboardAssessmentResume from '@/components/screens/DashboardAssessmentResume'
 import DashboardInTraining from '@/components/screens/DashboardInTraining'
+import DashboardInTrainingEnrolled from '@/components/screens/DashboardInTrainingEnrolled'
+import DashboardInTrainingRetakeUnlocked from '@/components/screens/DashboardInTrainingRetakeUnlocked'
+import TrainingList from '@/components/screens/TrainingList'
+import TrainingDetail from '@/components/screens/TrainingDetail'
+import TrainingEnrollSummary from '@/components/screens/TrainingEnrollSummary'
+import TrainingStatus from '@/components/screens/TrainingStatus'
 import DashboardActivation from '@/components/screens/DashboardActivation'
 import DashboardPrePipelineA from '@/components/screens/DashboardPrePipelineA'
 import DashboardPrePipelineB from '@/components/screens/DashboardPrePipelineB'
@@ -97,7 +103,13 @@ const screens = [
   { id: 'D-S2', name: 'Dashboard JaKer Selection (D-S2)', component: DashboardJaKerSelection },
   { id: 'D-S3-fresh', name: 'Dashboard Assessment Fresh (D-S3-fresh)', component: DashboardAssessmentFresh },
   { id: 'D-S3-resume', name: 'Dashboard Assessment Resume (D-S3-resume)', component: DashboardAssessmentResume },
-  { id: 'D-S4', name: 'Dashboard In Training (D-S4)', component: DashboardInTraining },
+  { id: 'D-S4a', name: 'Dashboard In Training — Belum Enroll (D-S4a)', component: DashboardInTraining },
+  { id: 'D-S4b', name: 'Dashboard In Training — Enrolled (D-S4b)', component: DashboardInTrainingEnrolled },
+  { id: 'D-S4c', name: 'Dashboard In Training — Retake Unlocked (D-S4c)', component: DashboardInTrainingRetakeUnlocked },
+  { id: 'TRV-01', name: 'Training List (TRV-01)', component: TrainingList },
+  { id: 'TRV-02', name: 'Training Detail (TRV-02)', component: TrainingDetail },
+  { id: 'TRV-03', name: 'Training Enrollment Summary (TRV-03)', component: TrainingEnrollSummary },
+  { id: 'TRV-04', name: 'Training Status Post-Payment (TRV-04)', component: TrainingStatus },
   { id: 'D-S5a', name: 'Dashboard Activation (D-S5a)', component: DashboardActivation },
   { id: 'D-S5b-A', name: 'Dashboard Pre-Pipeline A (D-S5b-A)', component: DashboardPrePipelineA },
   { id: 'D-S5b-B', name: 'Dashboard Pre-Pipeline B (D-S5b-B)', component: DashboardPrePipelineB },

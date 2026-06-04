@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, Manrope, Poppins, Roboto } from 'next/font/google'
+import { Plus_Jakarta_Sans, Manrope } from 'next/font/google'
 import Script from 'next/script'
 import { Providers } from './providers'
 import './globals.css'
@@ -11,27 +11,11 @@ const jakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
-// Heading font — Manrope (STARK v2 design system)
+// Heading font — Manrope
 const manrope = Manrope({
   variable: '--font-manrope',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
-  display: 'swap',
-})
-
-// Heading font — Poppins (legacy)
-const poppins = Poppins({
-  variable: '--font-poppins',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
-
-// Body copy font — Roboto (legacy)
-const roboto = Roboto({
-  variable: '--font-roboto',
-  subsets: ['latin'],
-  weight: ['400', '500'],
   display: 'swap',
 })
 
@@ -51,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakartaSans.variable} ${manrope.variable} ${poppins.variable} ${roboto.variable} h-full antialiased`}
+      className={`${jakartaSans.variable} ${manrope.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

@@ -124,7 +124,7 @@ const config: Config = {
 
       fontFamily: {
         sans:    ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono:    ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
 

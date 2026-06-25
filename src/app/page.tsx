@@ -70,11 +70,16 @@ import ErrorNetworkError from '@/components/screens/ErrorNetworkError'
 import Error404 from '@/components/screens/Error404'
 import ErrorServerError from '@/components/screens/ErrorServerError'
 import AssessmentEntryBriefing from '@/components/screens/AssessmentEntryBriefing'
+import AssessmentLanguageSelfReport from '@/components/screens/AssessmentLanguageSelfReport'
 import AssessmentLanguageQuestion from '@/components/screens/AssessmentLanguageQuestion'
+import AssessmentVoiceRecording from '@/components/screens/AssessmentVoiceRecording'
 import AssessmentMidTransition from '@/components/screens/AssessmentMidTransition'
 import AssessmentSkillQuestion from '@/components/screens/AssessmentSkillQuestion'
+import AssessmentSkillSubmit from '@/components/screens/AssessmentSkillSubmit'
 import AssessmentResultPass from '@/components/screens/AssessmentResultPass'
 import AssessmentResultFail from '@/components/screens/AssessmentResultFail'
+import AssessmentExperienceFlow from '@/components/screens/AssessmentExperienceFlow'
+import AssessmentCertificateUpload from '@/components/screens/AssessmentCertificateUpload'
 import PreAssessmentEligibilityGate from '@/components/screens/PreAssessmentEligibilityGate'
 import PreAssessmentBlocked from '@/components/screens/PreAssessmentBlocked'
 import PreAssessmentDestination from '@/components/screens/PreAssessmentDestination'
@@ -163,10 +168,15 @@ const screens = [
   { id: 'E-07', name: 'Error Network (E-07)', component: ErrorNetworkError },
   { id: 'E-08', name: 'Error 404 (E-08)', component: Error404 },
   { id: 'E-09', name: 'Error Server 500 (E-09)', component: ErrorServerError },
+  { id: 'AS-EXP', name: 'Assessment Experience Flow (AS-EXP)', component: AssessmentExperienceFlow },
+  { id: 'AS-CERT', name: 'Assessment Certificate Upload (AS-CERT)', component: AssessmentCertificateUpload },
   { id: 'AS-01', name: 'Assessment Entry Briefing (AS-01)', component: AssessmentEntryBriefing },
-  { id: 'AS-02', name: 'Assessment Language Question (AS-02)', component: AssessmentLanguageQuestion },
+  { id: 'AS-02a', name: 'Assessment Language Self Report (AS-02a)', component: AssessmentLanguageSelfReport },
+  { id: 'AS-02', name: 'Assessment Language Question / MCQ (AS-02b)', component: AssessmentLanguageQuestion },
+  { id: 'AS-02c', name: 'Assessment Voice Recording (AS-02c)', component: AssessmentVoiceRecording },
   { id: 'AS-03', name: 'Assessment Mid-Transition (AS-03)', component: AssessmentMidTransition },
   { id: 'AS-04', name: 'Assessment Skill Question (AS-04)', component: AssessmentSkillQuestion },
+  { id: 'AS-08', name: 'Assessment Skill Submit (AS-08)', component: AssessmentSkillSubmit },
   { id: 'AS-05', name: 'Assessment Result Pass (AS-05)', component: AssessmentResultPass },
   { id: 'AS-06', name: 'Assessment Result Fail (AS-06)', component: AssessmentResultFail },
   { id: 'PA-01', name: 'Pre-Assessment Eligibility Gate (PA-01)', component: PreAssessmentEligibilityGate },

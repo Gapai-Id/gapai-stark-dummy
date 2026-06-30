@@ -84,12 +84,12 @@ export default function PreAssessmentResults({
               <span className="text-[11px] font-bold text-white tracking-wide">REKOMENDASI UTAMA</span>
             </div>
             <div className="p-4">
-              <div className="flex items-start justify-between mb-3">
-                <div>
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1 min-w-0 mr-3">
                   <p className="text-[18px] font-bold text-[var(--text-primary)]">{topRec.jakerName}</p>
                   <div className="flex items-center gap-1 mt-0.5">
-                    <MapPin size={12} className="text-[var(--text-muted)]" />
-                    <span className="text-[12px] text-[var(--text-muted)]">{topRec.flag} {topRec.destination}</span>
+                    <MapPin size={12} className="text-[var(--text-muted)] flex-shrink-0" />
+                    <span className="text-[12px] text-[var(--text-muted)] whitespace-nowrap">{topRec.flag} {topRec.destination}</span>
                   </div>
                 </div>
                 <span className="text-[13px] font-bold text-[var(--brand-green-600)] bg-[var(--brand-green-50)] px-2.5 py-1 rounded-full flex-shrink-0">
@@ -113,11 +113,11 @@ export default function PreAssessmentResults({
         {availableRecs.slice(1).map((rec) => (
           <div key={rec.rank} className="rounded-[14px] border-[1.5px] border-[var(--border-default)] bg-white p-4">
             <div className="flex items-start justify-between mb-3">
-              <div>
+              <div className="flex-1 min-w-0 mr-3">
                 <p className="text-[16px] font-semibold text-[var(--text-primary)]">{rec.jakerName}</p>
                 <div className="flex items-center gap-1 mt-0.5">
-                  <MapPin size={12} className="text-[var(--text-muted)]" />
-                  <span className="text-[12px] text-[var(--text-muted)]">{rec.flag} {rec.destination}</span>
+                  <MapPin size={12} className="text-[var(--text-muted)] flex-shrink-0" />
+                  <span className="text-[12px] text-[var(--text-muted)] whitespace-nowrap">{rec.flag} {rec.destination}</span>
                 </div>
               </div>
               <span className="text-[12px] font-semibold text-[var(--brand-green-600)] bg-[var(--brand-green-50)] px-2 py-0.5 rounded-full flex-shrink-0">

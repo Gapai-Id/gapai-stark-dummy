@@ -8,13 +8,13 @@ const CURRENT_Q = 3
 const TOTAL_Q = 12
 
 const question = {
-  passage: 'Petugas: "Selamat siang, ada yang bisa saya bantu?"\nSari: "Ya, saya ingin bertanya tentang jadwal keberangkatan."',
-  text: 'Apa tujuan utama Sari dalam percakapan tersebut?',
+  passage: 'スタッフ：「田中さん、今日の午後は3号室の患者さんのリハビリをお願いします。」\n田中：「はい、わかりました。何時から始めればよいですか？」\nスタッフ：「2時からです。必要な道具は準備室にあります。」',
+  text: 'この会話でスタッフが田中さんに伝えていることは何ですか？',
   options: [
-    { key: 'A', text: 'Meminta bantuan memindahkan barang' },
-    { key: 'B', text: 'Menanyakan jadwal keberangkatan' },
-    { key: 'C', text: 'Memperkenalkan diri kepada petugas' },
-    { key: 'D', text: 'Memesan tiket perjalanan' },
+    { key: 'A', text: '道具の使い方を説明している' },
+    { key: 'B', text: '午後のリハビリの担当と開始時間を伝えている' },
+    { key: 'C', text: '患者さんの病状について報告している' },
+    { key: 'D', text: '準備室の場所を案内している' },
   ],
 }
 
@@ -28,7 +28,7 @@ export default function AssessmentLanguageQuestion() {
       <div className="sticky top-0 z-10 bg-white border-b border-[var(--border-subtle)] px-5 py-3">
         <div className="flex items-center justify-between mb-2">
           <p className="text-[12px] font-semibold text-[var(--text-brand)]">
-            Bagian 1 dari 2 · Kemampuan Bahasa
+            Bagian 1 dari 2 · Kemampuan Bahasa Jepang
           </p>
           <p className="text-[12px] text-[var(--text-muted)]">
             Pertanyaan {CURRENT_Q} dari {TOTAL_Q}

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { toPng } from 'html-to-image'
 import RegisterCredentials from '@/components/screens/RegisterCredentials'
 import RegisterOTP from '@/components/screens/RegisterOTP'
 import RegisterDemographics from '@/components/screens/RegisterDemographics'
@@ -197,19 +198,42 @@ const screens = [
 
 export default function PrototypePage() {
   const [currentScreen, setCurrentScreen] = useState('D-S1')
+  const [downloading, setDownloading] = useState(false)
+  const frameRef = useRef<HTMLDivElement>(null)
 
-  const CurrentScreen = screens.find(s => s.id === currentScreen)?.component ?? DashboardPreAssessment
+  const currentScreenMeta = screens.find(s => s.id === currentScreen)
+  const CurrentScreen = currentScreenMeta?.component ?? DashboardPreAssessment
+
+  const handleDownload = async () => {
+    if (!frameRef.current) return
+    setDownloading(true)
+    try {
+      const dataUrl = await toPng(frameRef.current, {
+        cacheBust: true,
+        pixelRatio: 3,
+      })
+      const link = document.createElement('a')
+      const safeName = (currentScreenMeta?.name ?? currentScreen)
+        .replace(/[^a-z0-9]/gi, '_')
+        .toLowerCase()
+      link.download = `${safeName}.png`
+      link.href = dataUrl
+      link.click()
+    } finally {
+      setDownloading(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center pt-4 pb-[60px]">
       {/* Phone frame */}
-      <div className="w-[375px] bg-white shadow-xl rounded-3xl overflow-hidden">
+      <div ref={frameRef} className="w-[375px] bg-white shadow-xl rounded-3xl overflow-hidden">
         <CurrentScreen />
       </div>
 
       {/* Navigator — sticky at bottom */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
-        <div className="max-w-[375px] mx-auto px-3 py-2 flex items-center gap-2">
+        <div className="max-w-[500px] mx-auto px-3 py-2 flex items-center gap-2">
           <p className="text-[10px] text-gray-400 whitespace-nowrap">Screen Navigator</p>
           <select
             value={currentScreen}
@@ -222,6 +246,14 @@ export default function PrototypePage() {
               </option>
             ))}
           </select>
+          <button
+            type="button"
+            onClick={handleDownload}
+            disabled={downloading}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#118A6D] text-white rounded-lg hover:bg-[#0d7a5f] disabled:opacity-60 whitespace-nowrap transition-colors"
+          >
+            {downloading ? 'Saving...' : '↓ PNG'}
+          </button>
         </div>
       </div>
     </div>

@@ -7,24 +7,24 @@ import { Button } from '@/components/design-system/Button';
 const RECOMMENDATIONS = [
   {
     rank: 1,
-    jakerName: 'Cook',
-    destination: 'Eropa',
-    flag: '🇪🇺',
+    jakerName: 'Caregiver Jepang',
+    destination: 'Jepang',
+    flag: '🇯🇵',
     score: 92,
   },
   {
     rank: 2,
-    jakerName: 'Kitchen Assistant',
-    destination: 'Eropa',
-    flag: '🇪🇺',
-    score: 88,
+    jakerName: 'Hospitality Jepang',
+    destination: 'Jepang',
+    flag: '🇯🇵',
+    score: 85,
   },
   {
     rank: 3,
-    jakerName: 'Waiter',
-    destination: 'Eropa',
-    flag: '🇪🇺',
-    score: 75,
+    jakerName: 'Caregiver Korea',
+    destination: 'Korea Selatan',
+    flag: '🇰🇷',
+    score: 78,
   },
 ];
 
